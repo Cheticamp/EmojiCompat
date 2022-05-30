@@ -17,21 +17,23 @@ class MyView @JvmOverloads constructor(
         textSize = 20f * resources.displayMetrics.scaledDensity
     }
 
-    fun setText(s: CharSequence) {
-        layout = StaticLayout(
-            s,
-            paint,
-            Layout.getDesiredWidth(s, paint).toInt(),
-            Layout.Alignment.ALIGN_NORMAL,
-            0f,
-            0f,
-            false
-        )
-        requestLayout()
-//        layout = StaticLayout.Builder.obtain(
-//            s, 0, s.length, paint, StaticLayout.getDesiredWidth(s, paint).toInt()
-//        ).build()
-    }
+    var text: CharSequence? = null
+        set(value) {
+            field = value
+            layout = StaticLayout(
+                value,
+                paint,
+                Layout.getDesiredWidth(value, paint).toInt(),
+                Layout.Alignment.ALIGN_NORMAL,
+                0f,
+                0f,
+                false
+            )
+            requestLayout()
+        }
+        get() {
+            return layout?.text
+        }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         layout?.apply {

@@ -39,7 +39,7 @@ class MainActivityTest {
                 R.string.emoji_button,
                 R.string.regular_text_view,
                 R.string.custom_text_view).forEach {
-            val text = rule.activity.getString(it, MainActivity.CLOUDY_FACE)
+            val text = rule.activity.getString(it, MainActivity.FACE_IN_CLOUDS)
             onView(withText(text)).check(matches(isDisplayed()))
         }
     }
